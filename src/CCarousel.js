@@ -10,18 +10,14 @@ export default function CCarousel() {
                 <Carousel.Item>
                     <img
                     className="d-block_w-100"
-                    src="http://g02.a.alicdn.com/kf/HTB1DET7GXXXXXbMapXXq6xXFXXXa/The-Fast-and-The-Furious-Dominic-Toretto-Vin-Diesel-Rhinestone-CROSS-Pendants-Necklaces-for-Men-Jewelry.jpg"
+                    src="https://sm.ign.com/t/ign_latam/screenshot/default/toretto-espacio_twu9.1280.jpg"
                     alt="First slide"
                     />
-                    <Carousel.Caption>
-                    <h5>First slide label</h5>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
                     className="d-block_w-100"
-                    src="holder.js/800x400?text=Second slide&bg=eee"
+                    src="https://s3.wi-fi.ru/cp3o/6kNViT78U6gJraAAbW11ZmZp?response-content-type=image/jpeg"
                     alt="Second slide"
                     />
                     <Carousel.Caption>
@@ -32,7 +28,7 @@ export default function CCarousel() {
                 <Carousel.Item>
                     <img
                     className="d-block_w-100"
-                    src="holder.js/800x400?text=Third slide&bg=e5e5e5"
+                    src="https://www.film.ru/sites/default/files/filefield_paths/dnh_fastfuriousspace_110717_1120.jpg"
                     alt="Third slide"
                     />
                     <Carousel.Caption>
