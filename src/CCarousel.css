@@ -7,5 +7,12 @@
     width:100vw;
     height:10vh;
     /* margin-bottom: 5px; */
-     /* margin-top: 5px;  */
+      margin-top: 55px;  
 } 
+
+
+.quote{
+    color: black;
+    border: 5px;
+    border-color: white;
+}

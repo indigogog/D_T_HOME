@@ -33,4 +33,10 @@
 }
 
 
-
+.NavPan{
+  position: sticky;
+  z-index: 5;
+}
+/* .basket{
+  ;
+} */
