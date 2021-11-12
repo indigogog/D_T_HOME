@@ -27,7 +27,6 @@
 
 
 .TextLabel{
-  margin-top: 170px;
   margin-bottom: 55px;
   color:white;
 }
@@ -37,6 +36,4 @@
   position: sticky;
   z-index: 5;
 }
-/* .basket{
-  ;
-} */
+
