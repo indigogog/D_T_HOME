@@ -15,20 +15,11 @@ export default class CrosCardComponent extends React.Component {
     };
     this.lookItem = this.lookItem.bind(this);
     this.button_text_changer = this.button_text_changer.bind(this);
-    this.button_text_render = this.button_text_render.bind(this);
+    this.button_render=this.button_render.bind(this);
   }
 
   lookItem(itemIndex) {
     console.log(itemIndex);
-  }
-
-  button_text_render(key){
-    if(this.state.data[key].condition==="false"){
-      return "Посмотреть";
-    }
-    else{
-      return "Уже в корзине";
-    }
   }
 
   button_text_changer(key) {
@@ -39,17 +30,42 @@ export default class CrosCardComponent extends React.Component {
         data : arr
       })
     }
-    else  {
-      console.log("NEPIZDA");
+  }
+  button_render(item){
+    if(this.state.data[item.key].condition==="false"){
+      return (
+        <Button
+        variant="primary"
+        onClick={() => {
+          if(this.state.data[item.key].condition==="false"){
+          this.props.func();
+          }
+          this.button_text_changer(item.key);                        
+        }}
+      >
+      Посмотреть
+      </Button>
+      )
+    }
+    else{
+      return(
+      <Button
+      variant="primary"
+      onClick={() => {
+        if(this.state.data[item.key].condition==="false"){
+        this.props.func();
+        }
+        this.button_text_changer(item.key);                        
+      }}
+      disabled
+    >
+    Уже в корзине
+    </Button>
+      )
     }
   }
  
-  // componentDidMount(){
-  //   this.state.data.map(()=>
-  //     {this.push_buttons_conditions()}
-  //   );
-  //   console.log(this.state.buttons_condition);
-  // }
+
   render() {
     return (
       <div>
@@ -73,17 +89,7 @@ export default class CrosCardComponent extends React.Component {
                   <Card.Body>
                     <Card.Title>{item.title} </Card.Title>
                     <Card.Text>{item.text}</Card.Text>
-                    <Button
-                      variant="primary"
-                      onClick={() => {
-                        if(this.state.data[item.key].condition==="false"){
-                        this.props.func();
-                        }
-                        this.button_text_changer(item.key);                        
-                      }}
-                    >
-                    {this.button_text_render(item.key)}
-                    </Button>
+                    {this.button_render(item)}
                   </Card.Body>
                 </Card>
               ))}
