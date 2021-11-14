@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 
 function App() {
-  const [index, setindex] = useState(0);
+  const [arr, setarg] = useState([]);
   return (
     <div className="App">
       <div className="NavPan">
@@ -26,7 +26,7 @@ function App() {
               <Nav className="me-auto">
               </Nav>
               <Nav>
-                <Nav.Link href="#deets">Корзина {index}</Nav.Link>
+                <Nav.Link href="#deets">Корзина {arr.length}</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -37,8 +37,10 @@ function App() {
         Наша выставка представляет к вашему вниманию кресты Доминика Торрето
         экей бензиныч экей коленвалыч экей солярыч и так далее.
       </div>
-      <CrosCardComponent func={() => {
-        setindex(index+1);
+      <CrosCardComponent func={(key) => {
+        let garr=arr.slice();
+        garr.push(key)
+        setarg(garr);
       }} />
 
       <div className="App-header"></div>
