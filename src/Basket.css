@@ -1,0 +1,10 @@
+.basketDiv{
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center
+}
+.crosImage{
+    float:left; /* Выравнивание по левому краю */
+    margin: 7px 7px 7px 0; /* Отступы вокруг картинки */
+}
