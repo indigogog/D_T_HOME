@@ -33,7 +33,7 @@ export default class Basket extends Component {
                   bg="dark"
                   key={this.state.data[item].key}
                   text="white"
-                  style={{ width: "100vw", height: "50vw" }}
+                  style={{ width: "100vw"}}
                   className="mb-2"
                   border="primary"
                 >

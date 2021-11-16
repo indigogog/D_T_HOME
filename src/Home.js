@@ -6,8 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Basket from "./Basket";
-import Button from 'react-bootstrap/Button'
-
+import Button from "react-bootstrap/Button";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -17,13 +16,13 @@ export default class Home extends React.Component {
       is_open_basket: false,
     };
     this.page_render = this.page_render.bind(this);
-    this.openBasket = this.openBasket.bind(this);
+    this.open_or_close_Basket = this.open_or_close_Basket.bind(this);
   }
 
   page_render() {
-      console.log(this.state.is_open_basket);
+    console.log(this.state.is_open_basket);
     if (this.state.is_open_basket === true) {
-      return <Basket arr = {this.state.arr}/>;
+      return <Basket arr={this.state.arr} />;
     } else {
       return (
         <div>
@@ -37,18 +36,23 @@ export default class Home extends React.Component {
               let garr = this.state.arr.slice();
               garr.push(key);
               this.setState({ arr: garr });
-
             }}
           />
         </div>
       );
     }
   }
-  openBasket(){
-    if (this.state.is_open_basket === false) {
+  open_or_close_Basket(i) {
+    if (i == 0) {
+      if (this.state.is_open_basket === false) {
         this.setState({
-            is_open_basket: true
-        })
+          is_open_basket: true,
+        });
+      }
+    } else {
+      this.setState({
+        is_open_basket: false,
+      });
     }
   }
   render() {
@@ -63,7 +67,11 @@ export default class Home extends React.Component {
             fixed="top"
           >
             <Container>
-                <Navbar.Brand href="/">
+              <Button
+                onClick={() => this.open_or_close_Basket(1)}
+                variant="dark"
+              >
+                <Navbar.Brand href="#home">
                   <img
                     alt=""
                     src="https://avatars.mds.yandex.net/get-pdb/1942510/6e4cc5b6-94d1-4a60-a95a-483529b46327/s1200"
@@ -73,17 +81,21 @@ export default class Home extends React.Component {
                   />{" "}
                   Онлайн выставка "Кресты бензиныча"
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                  <Nav className="me-auto"></Nav>
-                  <Nav>
-                    <Nav.Link href="#basket">
-                    <Button onClick={() => this.openBasket()}  variant="dark">
+              </Button>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="me-auto"></Nav>
+                <Nav>
+                  <Nav.Link href="#basket">
+                    <Button
+                      onClick={() => this.open_or_close_Basket(0)}
+                      variant="dark"
+                    >
                       Корзина {this.state.arr.length}
-                      </Button>
-                    </Nav.Link>
-                  </Nav>
-                </Navbar.Collapse>
+                    </Button>
+                  </Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
             </Container>
           </Navbar>
         </div>
