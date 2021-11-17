@@ -22,7 +22,12 @@ export default class Home extends React.Component {
   page_render() {
     console.log(this.state.is_open_basket);
     if (this.state.is_open_basket === true) {
-      return <Basket arr={this.state.arr} />;
+      return <Basket 
+        arr={this.state.arr} 
+        func={(key) => {
+        let garr = this.state.arr.splice(key,1);
+        this.setState({ arr: garr });
+      }} />;
     } else {
       return (
         <div>
@@ -32,6 +37,7 @@ export default class Home extends React.Component {
             экей бензиныч экей коленвалыч экей солярыч и так далее.
           </div>
           <CrosCardComponent
+             arr={this.state.arr} 
             func={(key) => {
               let garr = this.state.arr.slice();
               garr.push(key);

@@ -15,11 +15,14 @@ export default class Basket extends Component {
       arr: this.props.arr,
     };
 
-    this.lookItem = this.lookItem.bind(this);
+    this.rnd_price = this.rnd_price.bind(this);
   }
 
-  lookItem() {
-    console.log(this.state.arr);
+  rnd_price() {
+    let min = Math.ceil(10000);
+    let max = Math.floor(1000000);
+    let red = Math.floor(Math.random() * (max - min + 1)) + min;
+    return red.toString();
   }
 
   render() {
@@ -33,12 +36,12 @@ export default class Basket extends Component {
                   bg="dark"
                   key={this.state.data[item].key}
                   text="white"
-                  style={{ width: "100vw"}}
+                  style={{ width: "99vw"}}
                   className="mb-2"
                   border="primary"
                 >
                   <Card.Body>
-                  <Card.Title>{item.Title}</Card.Title>
+                  <Card.Title>{this.state.data[item].Title}</Card.Title>
                     <Card.Text>
                     <Card.Img variant="top" src={this.state.data[item].src}  style={{ width: "40vw" }} className="crosImage"/>
                       Продолжение "Доктора Стрэнджа" отправлено на масштабные
@@ -62,6 +65,16 @@ export default class Basket extends Component {
                       Стрэнджа" планируют выпустить в срок даже с учетом
                       пересъемок — 6 мая 2022 года.
                     </Card.Text>
+                    <div className="ggg">
+                      Примерная оценочная стоимость на черном рынке {this.rnd_price()} $  {'  '}
+                      <Button
+                      variant="primary"
+                      onClick={()=>{this.props.func(this.state.arr.indexOf(item))}}
+                    >
+                      Убрать из корзины
+                    </Button>
+                    </div>
+                    
                   </Card.Body>
                 </Card>
               </Col>

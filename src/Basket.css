@@ -12,3 +12,8 @@
 .mb-2{
     height: auto;
 }
+.ggg{
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}

@@ -16,18 +16,29 @@ export default class CrosCardComponent extends React.Component {
     this.lookItem = this.lookItem.bind(this);
     this.button_text_changer = this.button_text_changer.bind(this);
     this.button_render = this.button_render.bind(this);
+    this.firstChang = this.firstChang.bind(this);
   }
 
   lookItem(itemIndex) {
     console.log(itemIndex);
   }
 
+  firstChang(){
+    let garr = this.state.data.slice();
+    this.props.arr.map((item)=>{
+      garr[this.props.arr.indexOf(item)].condition = "false";
+    })
+    this.setState({
+      data: garr,
+    });
+  }
+
   button_text_changer(key) {
     if (this.state.data[key].condition === "false") {
-      let arr = this.state.data.slice();
-      arr[key].condition = "true";
+      let garr = this.state.data.slice();
+      garr[key].condition = "true";
       this.setState({
-        data: arr,
+        data: garr,
       });
     }
   }
@@ -64,12 +75,17 @@ export default class CrosCardComponent extends React.Component {
     }
   }
 
+  static componentWillMount(){
+    this.firstChang();
+  }
+
 //xs={1} md={3} 
-  render() {
+  render() { 
     return (
       <div>
         <ul className="try">
           <CardGroup>
+          
             <Row  xs={1} md={2} lg={3} xl={4}  xxl={5} >
               {this.state.data.map((item) => (
                 <Col>
