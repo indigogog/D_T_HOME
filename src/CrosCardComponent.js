@@ -2,7 +2,6 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import "./Cards.css";
-import MyJson from "./Crosses.json";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Col from 'react-bootstrap/Col'
@@ -11,30 +10,24 @@ export default class CrosCardComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: MyJson,
+      data: this.props.data,
     };
+    console.log(this.props.data);
     this.lookItem = this.lookItem.bind(this);
     this.button_text_changer = this.button_text_changer.bind(this);
     this.button_render = this.button_render.bind(this);
-    this.firstChang = this.firstChang.bind(this);
+   
   }
 
   lookItem(itemIndex) {
     console.log(itemIndex);
   }
 
-  firstChang(){
-    let garr = this.state.data.slice();
-    this.props.arr.map((item)=>{
-      garr[this.props.arr.indexOf(item)].condition = "false";
-    })
-    this.setState({
-      data: garr,
-    });
-  }
+  
 
   button_text_changer(key) {
     if (this.state.data[key].condition === "false") {
+      this.props.ChangeData(key,true);
       let garr = this.state.data.slice();
       garr[key].condition = "true";
       this.setState({
@@ -73,10 +66,6 @@ export default class CrosCardComponent extends React.Component {
         </Button>
       );
     }
-  }
-
-  static componentWillMount(){
-    this.firstChang();
   }
 
 //xs={1} md={3} 

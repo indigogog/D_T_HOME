@@ -7,27 +7,45 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Basket from "./Basket";
 import Button from "react-bootstrap/Button";
+import MyJson from "./Crosses.json";
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      arr: [],
+      data: MyJson,
+      count: 0,
       is_open_basket: false,
     };
     this.page_render = this.page_render.bind(this);
     this.open_or_close_Basket = this.open_or_close_Basket.bind(this);
   }
+  ChangeData(key, bopl) {
+    let garr = this.state.data.slice();
+    if (bopl) {
+      garr[key].condition = "true";
+    } else {
+      garr[key].condition = "false";
+    }
+    garr[key].condition = bopl.toString();
+    this.setState({ data: garr });
+  }
 
   page_render() {
     console.log(this.state.is_open_basket);
     if (this.state.is_open_basket === true) {
-      return <Basket 
-        arr={this.state.arr} 
-        func={(key) => {
-        let garr = this.state.arr.splice(key,1);
-        this.setState({ arr: garr });
-      }} />;
+      return (
+        <Basket
+          data={this.state.data}
+          func={() => {
+            let garr = this.state.count - 1;
+            this.setState({ count: garr });
+          }}
+          ChangeData={(key, bopl) => {
+            this.ChangeData(key,bopl)
+          }}
+        />
+      );
     } else {
       return (
         <div>
@@ -37,11 +55,14 @@ export default class Home extends React.Component {
             экей бензиныч экей коленвалыч экей солярыч и так далее.
           </div>
           <CrosCardComponent
-             arr={this.state.arr} 
-            func={(key) => {
-              let garr = this.state.arr.slice();
-              garr.push(key);
-              this.setState({ arr: garr });
+            data={this.state.data}
+            arr={this.state.count}
+            func={() => {
+              let garr = this.state.count + 1;
+              this.setState({ count: garr });
+            }}
+            ChangeData={(key, bopl) => {
+              this.ChangeData(key,bopl)
             }}
           />
         </div>
@@ -97,7 +118,7 @@ export default class Home extends React.Component {
                       onClick={() => this.open_or_close_Basket(0)}
                       variant="dark"
                     >
-                      Корзина {this.state.arr.length}
+                      Корзина {this.state.count}
                     </Button>
                   </Nav.Link>
                 </Nav>
