@@ -9,11 +9,9 @@ import Col from "react-bootstrap/Col";
 export default class Basket extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: this.props.data,
-    };
 
     this.rnd_price = this.rnd_price.bind(this);
+    this.is_Basket_empty = this.is_Basket_empty.bind(this);
   }
 
   rnd_price() {
@@ -23,13 +21,17 @@ export default class Basket extends Component {
     return red.toString();
   }
 
+  is_Basket_empty(){
+    if(this.props.count===0){
+      return (<h1>В корзине ничего нет</h1>);
+    }
+  }
+
   card_render(item){
-    console.log(item);
     if(item.condition==="true"){
       return (
       <Card
         bg="dark"
-        key={item.key}
         text="white"
         style={{ width: "99vw"}}
         className="mb-2"
@@ -65,8 +67,6 @@ export default class Basket extends Component {
             <Button
             variant="primary"
             onClick={()=>{
-                let detdata = this.state.data.slice();
-                detdata[item.key].condition=false;
                 this.props.ChangeData(item.key,false);
                 this.props.func();
             }
@@ -87,13 +87,16 @@ export default class Basket extends Component {
       <div className="basketDiv">
         <CardGroup>
           <Row xs={1} md={1} lg={1} xl={1} xxl={1}>
-            {this.state.data.map((item) => (
-              <Col>
+            {this.props.data.map((item) => (
+              <Col key={item.key}>
                 {this.card_render(item)}
               </Col>
             ))}
           </Row>
         </CardGroup>
+        <div className="bg">
+          {this.is_Basket_empty()}
+        </div>
       </div>
     );
   }

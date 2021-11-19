@@ -17,3 +17,9 @@
     bottom: 0;
     position: absolute;
 }
+.bg{
+    height:  50vw;
+    width: 99vw;
+    background-color: black;
+    color: white;
+}

@@ -9,9 +9,6 @@ import Col from 'react-bootstrap/Col'
 export default class CrosCardComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: this.props.data,
-    };
     console.log(this.props.data);
     this.lookItem = this.lookItem.bind(this);
     this.button_text_changer = this.button_text_changer.bind(this);
@@ -26,22 +23,17 @@ export default class CrosCardComponent extends React.Component {
   
 
   button_text_changer(key) {
-    if (this.state.data[key].condition === "false") {
+    if (this.props.data[key].condition === "false") {
       this.props.ChangeData(key,true);
-      let garr = this.state.data.slice();
-      garr[key].condition = "true";
-      this.setState({
-        data: garr,
-      });
     }
   }
   button_render(item) {
-    if (this.state.data[item.key].condition === "false") {
+    if (this.props.data[item.key].condition === "false") {
       return (
         <Button
           variant="primary"
           onClick={() => {
-            if (this.state.data[item.key].condition === "false") {
+            if (this.props.data[item.key].condition === "false") {
               this.props.func(item.key);
             }
             this.button_text_changer(item.key);
@@ -55,7 +47,7 @@ export default class CrosCardComponent extends React.Component {
         <Button
           variant="primary"
           onClick={() => {
-            if (this.state.data[item.key].condition === "false") {
+            if (this.props.data[item.key].condition === "false") {
               this.props.func();
             }
             this.button_text_changer(item.key);
@@ -76,11 +68,10 @@ export default class CrosCardComponent extends React.Component {
           <CardGroup>
           
             <Row  xs={1} md={2} lg={3} xl={4}  xxl={5} >
-              {this.state.data.map((item) => (
-                <Col>
+              {this.props.data.map((item) => (
+                <Col  key={item.key}>
                 <Card
                   bg="dark"
-                  key={item.key}
                   text="white"
                   style={{ width: "18rem" }}
                   className="mb-2"

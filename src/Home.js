@@ -36,6 +36,7 @@ export default class Home extends React.Component {
     if (this.state.is_open_basket === true) {
       return (
         <Basket
+          count={this.state.count}
           data={this.state.data}
           func={() => {
             let garr = this.state.count - 1;
@@ -70,7 +71,7 @@ export default class Home extends React.Component {
     }
   }
   open_or_close_Basket(i) {
-    if (i == 0) {
+    if (i === 0) {
       if (this.state.is_open_basket === false) {
         this.setState({
           is_open_basket: true,
